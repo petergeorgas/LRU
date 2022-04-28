@@ -1,5 +1,7 @@
 package lru
 
+import "container/list"
+
 type LRUCache interface {
 	Insert(any)
 	Get(any)
@@ -7,7 +9,8 @@ type LRUCache interface {
 
 type lruCache struct {
 	Capacity int
-	mp       map[any]any
+	Mp       map[any]list.Element
+	List     list.List
 }
 
 func New(capacity int) *lruCache {
